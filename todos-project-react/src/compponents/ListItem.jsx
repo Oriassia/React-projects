@@ -2,16 +2,22 @@ import React from "react";
 
 function ListItem(props) {
   return (
-    <li key={props.todo.id}>
+    <li>
       <div
-        style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+        className={props.todo.isComplete ? "checked-todo" : ""}
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+        }}
       >
         <input
+          id={props.todo.id}
           type="checkbox"
           checked={props.todo.isComplete}
           onChange={() => props.toggleCompleted(props.todo.id)}
         />
-        {props.todo.title}
+        <label htmlFor={props.todo.id}>{props.todo.title}</label>
       </div>
       <button
         onClick={() => {

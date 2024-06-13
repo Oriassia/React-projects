@@ -1,12 +1,26 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./App.css";
 import TodoList from "./compponents/TodoList";
 import AddTask from "./compponents/AddTask";
 import Statistics from "./compponents/Statistics";
+import SearchSection from "./compponents/SearchSection";
 
 function App() {
   // init statments
   const [todos, setTodos] = useState([]);
+  const [searchInputValue, setSearchInputValue] = useState("");
+
+  //derived states
+  const filteredTodos = useMemo(
+    () =>
+      todos.filter((todo) => {
+        return todo.title
+          .toLowerCase()
+          .includes(searchInputValue.toLowerCase());
+      }),
+    [todos, searchInputValue]
+  );
+
   async function fetchData() {
     try {
       const response = await fetch("http://localhost:8001/todos");
@@ -131,16 +145,25 @@ function App() {
         />
       </div>
 
-      <div className="content">
-        <TodoList
-          todos={todos}
-          toggleCompleted={toggleCompleted}
-          removeTask={removeTask}
-          addTodoFocusInput={addTodoFocusInput}
+      <div
+        className="content"
+        style={{ display: "flex", flexDirection: "column" }}
+      >
+        <SearchSection
+          searchInputValue={searchInputValue}
+          setSearchInputValue={setSearchInputValue}
         />
 
-        <div className="side-bar">
-          <Statistics todos={todos} />
+        <div className="content-list-stats" style={{ display: "flex" }}>
+          <TodoList
+            todos={filteredTodos}
+            toggleCompleted={toggleCompleted}
+            removeTask={removeTask}
+            addTodoFocusInput={addTodoFocusInput}
+          />
+          <div className="side-bar">
+            <Statistics todos={todos} />
+          </div>
         </div>
       </div>
       <footer></footer>

@@ -7,11 +7,13 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f9;
-  color: #333;
-  padding: 10%;
+  /* padding: 10%; */
   justify-content: center;
-  align-items: flex-start;
   height: 100vh;
+}
+
+#root {
+  min-width: 450px;
 }
 
 header {
@@ -81,6 +83,11 @@ header {
   border-bottom: 2px solid #eee;
 }
 
+.checked-todo {
+  text-decoration: line-through;
+  color: rgb(127, 127, 127);
+}
+
 .todos-list li:last-child {
   border-bottom: none;
 }
@@ -138,4 +145,27 @@ footer {
   color: #999;
   font-size: 14px;
   width: 100%;
+}
+
+.content__search {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Adjust margin as needed */
+}
+
+.content__search input[type="text"] {
+  flex: 1; /* Take remaining space */
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+.content__search input[type="text"]:focus {
+  border-color: blue;
+}
+
+.content__search i.fa-magnifying-glass {
+  margin-left: 10px; /* Adjust margin as needed */
 }
