@@ -136,37 +136,37 @@ function App() {
   // UI structure based on current data (local todos)
   return (
     <>
-      <header>My todos:</header>
-      <div className="add-task-container">
-        <AddTask
-          addTask={addTask}
-          addTodoFocusInput={addTodoFocusInput}
-          addTodoInputElement={addTodoInputElement}
-        />
-      </div>
-
-      <div
-        className="content"
-        style={{ display: "flex", flexDirection: "column" }}
-      >
-        <SearchSection
-          searchInputValue={searchInputValue}
-          setSearchInputValue={setSearchInputValue}
-        />
-
-        <div className="content-list-stats" style={{ display: "flex" }}>
-          <TodoList
-            todos={filteredTodos}
-            toggleCompleted={toggleCompleted}
-            removeTask={removeTask}
+      <div className="main-wrapper">
+        <header>My todos:</header>
+        <div className="add-task-container">
+          <AddTask
+            addTask={addTask}
             addTodoFocusInput={addTodoFocusInput}
+            addTodoInputElement={addTodoInputElement}
           />
-          <div className="side-bar">
-            <Statistics todos={todos} />
+        </div>
+        <div
+          className="content"
+          style={{ display: "flex", flexDirection: "column" }}
+        >
+          <SearchSection
+            searchInputValue={searchInputValue}
+            setSearchInputValue={setSearchInputValue}
+          />
+          <div className="content-list-stats">
+            <div className="side-bar">
+              <Statistics todos={todos} />
+            </div>
+            <TodoList
+              todos={filteredTodos}
+              toggleCompleted={toggleCompleted}
+              removeTask={removeTask}
+              addTodoFocusInput={addTodoFocusInput}
+            />
           </div>
         </div>
+        <footer></footer>
       </div>
-      <footer></footer>
     </>
   );
 }

@@ -1,4 +1,6 @@
 import React from "react";
+import Button from "@mui/material/Button";
+import AddIcon from "@mui/icons-material/Add";
 
 function AddTask(props) {
   return (
@@ -8,9 +10,13 @@ function AddTask(props) {
         type="text"
         placeholder="New task..."
       />
-      <button type="submit" onClick={props.addTodoFocusInput}>
-        Add task
-      </button>
+      <Button
+        onClick={props.addTask}
+        variant="contained"
+        sx={{ padding: "0", minWidth: "40px" }}
+      >
+        <AddIcon />
+      </Button>
     </form>
   );
 }

@@ -1,31 +1,30 @@
 import React from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Checkbox from "@mui/material/Checkbox";
+import { width } from "@mui/system";
 
 function ListItem(props) {
   return (
     <li>
       <div
-        className={props.todo.isComplete ? "checked-todo" : ""}
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-        }}
+        className={`todo-details ${
+          props.todo.isComplete ? "checked-todo" : ""
+        }`}
       >
-        <input
-          id={props.todo.id}
-          type="checkbox"
+        <Checkbox
+          id={props.todo.id.toString()}
           checked={props.todo.isComplete}
           onChange={() => props.toggleCompleted(props.todo.id)}
         />
-        <label htmlFor={props.todo.id}>{props.todo.title}</label>
+        <label style={{}} htmlFor={props.todo.id.toString()}>
+          {props.todo.title}
+        </label>
       </div>
-      <button
-        onClick={() => {
-          props.removeTask(props.todo.id);
-        }}
-      >
-        Remove
-      </button>
+      <DeleteIcon
+        className="trash-icon"
+        fontSize="small"
+        onClick={() => props.removeTask(props.todo.id)}
+      />
     </li>
   );
 }

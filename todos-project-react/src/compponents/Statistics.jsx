@@ -8,14 +8,20 @@ function Statistics(props) {
 
   return (
     <>
-      <span>Completed tasks: {completedTasksCounter}</span>
-      <span>Active tasks: {activeTasksCounter}</span>
-      <span>
-        {props.todos.length > 0
-          ? ((completedTasksCounter / props.todos.length) * 100).toFixed()
-          : 0}
-        %
-      </span>
+      <div className="task-info">
+        <span>Completed tasks: {completedTasksCounter}</span>
+      </div>
+      <div className="task-info">
+        <span>Active tasks: {activeTasksCounter}</span>
+      </div>
+      <div className="task-info">
+        <span>
+          {props.todos.length > 0
+            ? ((completedTasksCounter / props.todos.length) * 100).toFixed()
+            : 0}
+          %
+        </span>
+      </div>
       <div className="progress-bar-container">
         <div
           className="progress-bar"

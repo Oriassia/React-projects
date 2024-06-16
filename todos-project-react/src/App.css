@@ -7,13 +7,13 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f9;
-  /* padding: 10%; */
   justify-content: center;
   height: 100vh;
 }
 
-#root {
-  min-width: 450px;
+.main-wrapper {
+  margin-inline: 20px;
+  width: 400px;
 }
 
 header {
@@ -42,20 +42,6 @@ header {
   border-radius: 4px 0 0 4px;
 }
 
-.add-task button {
-  padding: 10px 20px;
-  background-color: #4a90e2;
-  color: white;
-  border: none;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.add-task button:hover {
-  background-color: #357ab8;
-}
-
 .content {
   display: flex;
   background: #fff;
@@ -64,10 +50,17 @@ header {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+.content-list-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .todos-list-container {
   flex: 2;
-  padding-right: 20px;
-  border-right: 2px solid #eee;
+  display: flex;
+  flex-direction: column;
+  overflow-wrap: break-word;
 }
 
 .todos-list {
@@ -83,6 +76,14 @@ header {
   border-bottom: 2px solid #eee;
 }
 
+.todo-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-width: 80%;
+  word-break: break-word;
+}
+
 .checked-todo {
   text-decoration: line-through;
   color: rgb(127, 127, 127);
@@ -96,65 +97,102 @@ header {
   margin-right: 10px;
 }
 
-.todos-list button {
-  background: #ff6b6b;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: #fff;
+.trash-icon {
+  color: red;
+  font-size: 15px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: color 0.3s;
+  transform: scale(1);
 }
 
-.todos-list button:hover {
-  background: #ff4757;
+.trash-icon:hover {
+  color: black;
+  animation: shake-trash 0.7s infinite;
+}
+
+@keyframes shake-trash {
+  0%,
+  100% {
+    transform: scale(1.4) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.4) rotate(-30deg);
+  }
+  50% {
+    transform: scale(1.4) rotate(30deg);
+  }
+  75% {
+    transform: scale(1.4) rotate(-30deg);
+  }
 }
 
 .side-bar {
   flex: 1;
-  padding-left: 20px;
+  padding: 15px;
   text-align: center;
+  background: linear-gradient(135deg, #f3e7e9, #e3eeff);
+  color: #333;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.8s ease-in-out;
 }
 
-.side-bar span {
-  display: block;
+@keyframes fadeIn {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.task-info {
+  display: flex;
+  justify-content: space-between;
+  text-align: start;
   margin-bottom: 10px;
-  color: #333;
-  font-weight: bold;
+  font-size: 0.8em;
+  font-weight: 500;
 }
 
 .progress-bar-container {
   width: 100%;
-  height: 20px;
+  height: 10px;
   background-color: #e0e0e0;
-  border-radius: 10px;
+  border-radius: 5px;
   overflow: hidden;
-  margin-top: 20px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
 }
 
 .progress-bar {
-  background-color: #4caf50;
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
   height: 100%;
   width: 0;
-  transition: width 0.3s ease;
+  transition: width 0.4s ease;
+  border-radius: 5px 0 0 5px;
 }
 
-footer {
-  margin-top: 20px;
-  text-align: center;
-  color: #999;
-  font-size: 14px;
-  width: 100%;
+.progress-bar::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 5px;
+  background: rgba(255, 255, 255, 0.3);
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 5px 0 0 5px;
 }
 
 .content__search {
   display: flex;
   align-items: center;
-  margin-bottom: 10px; /* Adjust margin as needed */
+  margin-bottom: 10px;
 }
 
 .content__search input[type="text"] {
-  flex: 1; /* Take remaining space */
+  flex: 1;
   padding: 8px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -167,5 +205,16 @@ footer {
 }
 
 .content__search i.fa-magnifying-glass {
-  margin-left: 10px; /* Adjust margin as needed */
+  margin-left: 10px;
+}
+
+footer {
+  margin-top: 20px;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  width: 100%;
+}
+
+@media only screen and (max-width: 375px) {
 }
