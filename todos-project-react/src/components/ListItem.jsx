@@ -1,7 +1,7 @@
 import React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Checkbox from "@mui/material/Checkbox";
-import { width } from "@mui/system";
+import Tooltip from "@mui/material/Tooltip";
 
 function ListItem(props) {
   return (
@@ -20,11 +20,14 @@ function ListItem(props) {
           {props.todo.title}
         </label>
       </div>
-      <DeleteIcon
-        className="trash-icon"
-        fontSize="small"
-        onClick={() => props.removeTask(props.todo.id)}
-      />
+
+      <Tooltip title="Delete">
+        <DeleteIcon
+          className="trash-icon"
+          fontSize="small"
+          onClick={() => props.removeTask(props.todo.id)}
+        />
+      </Tooltip>
     </li>
   );
 }

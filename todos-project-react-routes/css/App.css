@@ -1,0 +1,25 @@
+@import url(./reset.css);
+@import url(./HomePageStyle.css);
+@import url(./todoListPageStyle.css);
+@import url(./todoDetailsPageStyle.css);
+
+/* Navigation */
+.nav-bar {
+  display: flex;
+  gap: 10px;
+  background-color: #fff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-bar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  padding: 10px;
+  transition: color 0.3s ease;
+}
+
+.nav-bar a:hover {
+  color: salmon;
+}

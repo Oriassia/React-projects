@@ -4,9 +4,8 @@ import ListItem from "./ListItem";
 // Create the UI structure & sort tasks by actives first
 function TodoList(props) {
   // Separate active and completed tasks
-  const activeTasks = props.todos.filter((todo) => !todo.isComplete);
-  const completedTasks = props.todos.filter((todo) => todo.isComplete);
-
+  const activeTodos = props.todos.filter((todo) => !todo.isComplete);
+  const completedTodos = props.todos.filter((todo) => todo.isComplete);
   return (
     <div className="todos-list-container">
       {props.todos.length === 0 ? (
@@ -14,7 +13,7 @@ function TodoList(props) {
       ) : (
         <ul className="todos-list">
           {/* Active tasks */}
-          {activeTasks.map((todo) => (
+          {activeTodos.map((todo) => (
             <ListItem
               key={todo.id}
               todo={todo}
@@ -25,7 +24,7 @@ function TodoList(props) {
           ))}
 
           {/* Completed tasks */}
-          {completedTasks.map((todo) => (
+          {completedTodos.map((todo) => (
             <ListItem
               key={todo.id}
               todo={todo}

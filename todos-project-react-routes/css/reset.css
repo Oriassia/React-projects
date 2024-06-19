@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+@media only screen and (max-width: 375px) {
+  .main-wrapper {
+    width: 90%;
+    margin-inline: 5%;
+  }
+
+  .add-task input[type="text"] {
+    padding: 8px;
+  }
+
+  .statistics-section {
+    padding: 10px;
+  }
+
+  .task-info {
+    font-size: 0.7em;
+  }
+}

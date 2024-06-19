@@ -1,14 +1,19 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import "./App.css";
-import TodoList from "./components/TodoList";
-import AddTask from "./components/AddTask";
-import Statistics from "./components/Statistics";
-import FilterSection from "./components/FilterSection";
+import TodoList from "../../components/TodoList";
+import AddTask from "../../components/AddTask";
+import Statistics from "../../components/Statistics";
+import FilterSection from "../../components/FilterSection";
+import { useSearchParams } from "react-router-dom";
 
-function App() {
+function TodoListPage() {
+  const [searchParams, setSearchParams] = useSearchParams({ search: "" });
   const [todos, setTodos] = useState([]);
-  const [searchInputValue, setSearchInputValue] = useState("");
   const [selectFilter, setSelectFilter] = useState("all");
+
+  useEffect(() => {
+    fetchData();
+    addTodoFocusInput();
+  }, []);
 
   // Fetch todos from the server
   async function fetchData() {
@@ -36,11 +41,6 @@ function App() {
     }
     return result;
   }
-
-  useEffect(() => {
-    fetchData();
-    addTodoFocusInput();
-  }, []);
 
   const addTodoInputElement = useRef(null);
   function addTodoFocusInput() {
@@ -118,7 +118,7 @@ function App() {
     return todos.filter((todo) => {
       const matchesSearch = todo.title
         .toLowerCase()
-        .includes(searchInputValue.toLowerCase());
+        .includes(searchParams?.get("search")?.toLowerCase());
 
       switch (selectFilter) {
         case "all":
@@ -131,7 +131,7 @@ function App() {
           return false;
       }
     });
-  }, [todos, searchInputValue, selectFilter]);
+  }, [todos, searchParams, selectFilter]);
 
   return (
     <>
@@ -152,9 +152,9 @@ function App() {
 
           <FilterSection
             filterSelect={selectFilter}
-            setFilterSelect={setSelectFilter}
-            searchInputValue={searchInputValue}
-            setSearchInputValue={setSearchInputValue}
+            setSelectFilter={setSelectFilter}
+            setSearchParams={setSearchParams}
+            searchParams={searchParams}
           />
           <div className="content-list">
             <TodoList
@@ -171,4 +171,4 @@ function App() {
   );
 }
 
-export default App;
+export default TodoListPage;
