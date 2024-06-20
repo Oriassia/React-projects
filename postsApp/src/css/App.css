@@ -1,0 +1,6 @@
+@import url("/src/css/homePageStyle.css");
+@import url("/src/css/postsPageStyle.css");
+
+.active {
+  color: #ff9800;
+}
